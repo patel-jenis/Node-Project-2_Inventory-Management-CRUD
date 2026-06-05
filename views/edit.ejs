@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Form</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #eef2f3, #8e9eab);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        input,
+        select,
+        textarea,
+        button {
+            font-family: Arial, sans-serif;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 600px;
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h1 {
+            text-align: center;
+            margin-bottom: 5px;
+            color: #111827;
+            font-family: Arial, sans-serif;
+        }
+
+        .card p {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #6b7280;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        input,
+        select,
+        textarea {
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            outline: none;
+            transition: 0.3s;
+            font-size: 14px;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 6px rgba(37, 99, 235, 0.2);
+        }
+
+        textarea {
+            resize: none;
+            grid-column: span 2;
+            height: 80px;
+        }
+
+        .full {
+            grid-column: span 2;
+        }
+
+        button {
+            grid-column: span 2;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #9ca3af;
+            font-size: 13px;
+        }
+
+        .view-link-wrapper {
+            text-align: center;
+            margin-top: 18px;
+        }
+
+        .view-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            background: #f1f5f9;
+            color: #2564ebd1;
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 14px;
+            border: 1px solid #dbeafe;
+            transition: all 0.3s ease;
+        }
+
+        .view-link:hover {
+            background: #ddeaf7;
+        }
+
+        @media (max-width: 600px) {
+            form {
+                grid-template-columns: 1fr;
+            }
+
+            .full,
+            button,
+            textarea {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+        <h1>Update Inventory</h1>
+        <p>Edit product details to your inventory</p>
+
+        <form action="/update-inventory" method="POST">
+
+            <input type="text" name="id" value="<%= product.id %>" hidden>
+
+            <input type="text" name="productName" value="<%= product.productName %>" placeholder="Product Name"
+                required>
+
+            <select name="category" required>
+                <option value="">Select Category</option>
+
+                <option value="electronics" <%=product.category==='electronics' ? 'selected' : '' %>>
+                    Electronics
+                </option>
+
+                <option value="clothing" <%=product.category==='clothing' ? 'selected' : '' %>>
+                    Clothing
+                </option>
+
+                <option value="grocery" <%=product.category==='grocery' ? 'selected' : '' %>>
+                    Grocery
+                </option>
+
+                <option value="accessories" <%=product.category==='accessories' ? 'selected' : '' %>>
+                    Accessories
+                </option>
+            </select>
+
+            <input type="number" name="quantity" value="<%= product.quantity %>" placeholder="Quantity" required>
+
+            <input type="number" name="price" value="<%= product.price %>" placeholder="Price (₹)" required>
+
+            <textarea name="description" placeholder="Product Description"
+                required><%= product.description %></textarea>
+
+            <button type="submit">Update Product</button>
+
+        </form>
+        <div class="view-link-wrapper">
+            <a href="/view-inventory" class="view-link">
+                View Inventory Data
+                <span>→</span>
+            </a>
+        </div>
+    </div>
+
+</body>
+
+</html>

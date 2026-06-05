@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #eef2f3, #dbeafe);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 700px;
+            background: #fff;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            color: #111827;
+            font-size: 28px;
+        }
+
+        .badge {
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: capitalize;
+        }
+
+        .details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .item {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .item label {
+            display: block;
+            color: #6b7280;
+            font-size: 13px;
+            margin-bottom: 6px;
+        }
+
+        .item p {
+            color: #111827;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: capitalize;
+        }
+
+        .description {
+            margin-top: 20px;
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .description h3 {
+            color: #374151;
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+
+        .description p {
+            color: #4b5563;
+            line-height: 1.6;
+        }
+
+        .actions {
+            margin-top: 25px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .back {
+            background: #eff6ff;
+            color: #2563eb;
+            border: 1px solid #bfdbfe;
+        }
+
+        .back:hover {
+            background: #dbeafe;
+        }
+
+        .edit {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .edit:hover {
+            background: #fde68a;
+        }
+
+        @media (max-width: 600px) {
+            .details {
+                grid-template-columns: 1fr;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+
+        <div class="header">
+            <h1>
+                <%= product.productName %>
+            </h1>
+            <span class="badge">
+                <%= product.category %>
+            </span>
+        </div>
+
+        <div class="details">
+            <div class="item">
+                <label>Product ID</label>
+                <p>
+                    <%= product.id %>
+                </p>
+            </div>
+
+            <div class="item">
+                <label>Quantity</label>
+                <p>
+                    <%= product.quantity %>
+                </p>
+            </div>
+
+            <div class="item">
+                <label>Price</label>
+                <p>₹<%= product.price %>
+                </p>
+            </div>
+
+            <div class="item">
+                <label>Category</label>
+                <p>
+                    <%= product.category %>
+                </p>
+            </div>
+        </div>
+
+        <div class="description">
+            <h3>Description</h3>
+            <p>
+                <%= product.description %>
+            </p>
+        </div>
+
+        <div class="actions">
+            <a href="/view-inventory" class="btn back">
+                ← Back to Inventory
+            </a>
+
+            <a href="/edit-inventory/<%= product.id %>" class="btn edit">
+                ✏ Edit Product
+            </a>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
